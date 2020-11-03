@@ -1,0 +1,17 @@
+/* Fullscreen Header Code */
+.top-header-fullscreen.et_pb_section {
+	background-position: 40% 50%;
+	height: calc(100vh - 88px);
+}
+body.admin-bar .top-header-fullscreen.et_pb_section {
+	height: calc(100vh - 120px);
+}
+
+@media only screen and ( max-width: 980px ){
+	.top-header-fullscreen.et_pb_section{ 
+		height: calc(100vh - 120px); 
+	}
+	body.admin-bar .top-header-fullscreen.et_pb_section {
+		height: calc(100vh - 120px);
+	}
+}
