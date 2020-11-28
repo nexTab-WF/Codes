@@ -1,0 +1,6 @@
+function next_header_insertion() {
+	if( is_front_page(){
+		echo '<meta property="og:image" content="Link_zu_deinem_Bild.jpg" />';
+	}
+}
+add_action('wp_head', 'next_header_insertion');
