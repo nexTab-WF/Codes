@@ -1,6 +1,15 @@
 function next_header_insertion() {
 	if( is_front_page(){
-		echo '<meta property="og:image" content="Link_zu_deinem_Bild.jpg" />';
+		echo '<meta property="og:image" content="Link_zu_deinem_Bild_1.jpg" />';
+	} else{
+		echo '<meta property="og:image" content="Link_zu_deinem_Bild_2.jpg" />';
 	}
+}
+add_action('wp_head', 'next_header_insertion');
+
+//Wenn immer das gleiche Bild angezeigt werden soll, dann sieht der code wie folgt aus: 
+
+function next_header_insertion() {
+		echo '<meta property="og:image" content="Link_zu_deinem_Bild_1.jpg" />';
 }
 add_action('wp_head', 'next_header_insertion');
