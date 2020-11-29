@@ -1,3 +1,13 @@
+//Wenn immer das gleiche Bild angezeigt werden soll, dann sieht der Code wie folgt aus: 
+
+function next_header_insertion() {
+		echo '<meta property="og:image" content="Link_zu_deinem_Bild_1.jpg" />';
+}
+add_action('wp_head', 'next_header_insertion');
+
+
+//Wenn beim Verlinken der Homepage ein anderes Bild angezeigt werden soll, dann sieht der Code wie folgt aus: 
+
 function next_header_insertion() {
 	if( is_front_page(){
 		echo '<meta property="og:image" content="Link_zu_deinem_Bild_1.jpg" />';
@@ -7,9 +17,4 @@ function next_header_insertion() {
 }
 add_action('wp_head', 'next_header_insertion');
 
-//Wenn immer das gleiche Bild angezeigt werden soll, dann sieht der Code wie folgt aus: 
 
-function next_header_insertion() {
-		echo '<meta property="og:image" content="Link_zu_deinem_Bild_1.jpg" />';
-}
-add_action('wp_head', 'next_header_insertion');
