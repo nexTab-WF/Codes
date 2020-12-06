@@ -1,0 +1,70 @@
+Standardmäßig ist es im Divi Theme von Elegant Themes nicht möglich, ganz normalen Text als Logo zu definieren. Vielmehr müsst ihr immer eine Grafik als Logo hochladen. Soll euer Logo nun aber wirklich nur aus Text bestehen, so ist das eine weniger sinnvolle Vorgehensweise, da Text als Grafik mitunter sehr schlecht skaliert und pixelig aussehen kann.
+
+Dies könnt ihr mit ein paar Handgriffen mit Hilfe eines Child Themes umgehen und dafür sorgen, dass ihr auch "echten Text" als Logo einsetzen könnt. Wie das genau funktioniert, erfahrt ihr hier im Video.
+
+Original Code-Block in der header.php von Divi (Zeile 237 bis Zeile 249):
+
+<?php
+				$logo = ( $user_logo = et_get_option( 'divi_logo' ) ) && ! empty( $user_logo )
+					? $user_logo
+					: $template_directory_uri . '/images/logo.png';
+
+				ob_start();
+			?>
+				<div class="logo_container">
+					<span class="logo_helper"></span>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+						<img src="<?php echo esc_attr( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" id="logo" data-height-percentage="<?php echo esc_attr( et_get_option( 'logo_height', '54' ) ); ?>" />
+					</a>
+				</div>
+
+
+Neuer Code-Block in der header.php des Divi Child Themes (Zeile 237 bis 253):
+			
+<?php
+				$logo = ( $user_logo = et_get_option( 'divi_logo' ) ) && ! empty( $user_logo )
+					? $user_logo
+					: get_bloginfo('name');
+
+				ob_start();
+			?>
+				<div class="logo_container">
+					<span class="logo_helper"></span>
+					<?php if($logo == get_bloginfo('name')) { ?>
+						<a class="textlogo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Zurück zu <?php echo $logo; ?>"><?php echo $logo; ?></a>
+					<?php } else { ?>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<img src="<?php echo esc_attr( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" id="logo" data-height-percentage="<?php echo esc_attr( et_get_option( 'logo_height', '54' ) ); ?>" />
+						</a>
+					<?php } ?>
+				</div>
+
+
+CSS Styles:
+
+
+header#main-header a.textlogo {
+		color: #EDA03D;
+		font-family: 'Parisienne';
+		font-size: 45px;
+		transition: all 300ms ease;
+		vertical-align: -10px;
+	}
+header#main-header.et-fixed-header a.textlogo {
+		font-size: 25px;
+		vertical-align: -2px;
+}
+	
+@media only screen and ( max-width: 980px ) { 
+	header#main-header {
+		a.textlogo { vertical-align: -5px; }
+	}
+}
+
+@media only screen and ( max-width: 767px ) { 
+	header#main-header a.textlogo { font-size: 37px; }
+}
+
+@media only screen and ( max-width: 479px ) {
+	header#main-header a.textlogo { font-size: 32px; }
+}
